@@ -40,6 +40,7 @@ struct Opt {
 /// Converts the text in the input file to an MP3 audio file
 /// with the ".txt" extension replaced by ".mp3".
 /// If successful, returns the name of the audio file.
+// snippet-start:[telephone-convert_text.rust.main]
 async fn convert_text(verbose: bool, client: &aws_sdk_polly::Client, filename: &str) -> String {
     if verbose {
         println!("Opening text file {} to convert to audio", filename);
@@ -77,8 +78,10 @@ async fn convert_text(verbose: bool, client: &aws_sdk_polly::Client, filename: &
 
     out_file
 }
+// snippet-end:[telephone-convert_text.rust.main]
 
 /// Saves the file in the Amazon S3 bucket.
+// snippet-start:[telephone-save_mp3_file.rust.main]
 async fn save_mp3_file(
     verbose: bool,
     client: &aws_sdk_s3::Client,
@@ -109,8 +112,10 @@ async fn save_mp3_file(
 
     uri
 }
+// snippet-end:[telephone-save_mp3_file.rust.main]
 
 /// Converts the contents of an MP3 audio file into text.
+// snippet-start:[telephone-convert_audio.rust.main]
 async fn convert_audio(
     verbose: bool,
     client: &aws_sdk_transcribe::Client,
@@ -192,6 +197,7 @@ async fn convert_audio(
 
     Ok(())
 }
+// snippet-end:[telephone-convert_audio.rust.main]
 
 /// Synthesizes a plain text (UTF-8) input file to an audio file, converts that audio file to text, and displays the text.
 /// # Arguments
